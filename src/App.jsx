@@ -5,8 +5,7 @@ import BalanceCards from "./components/BalanceCards";
 import SettlementList from "./components/SettlementList";
 import UserManager from "./components/UserManager";
 import { calculateSettlement } from "./utils/calculateSettlement";
-import ExpenseList from "./components/ExpenseList.JSX";
-
+import ExpenseList1 from "./components/ExpenseList1";
 export default function App() {
   const [dark, setDark] = useState(true);
   const [groups, setGroups] = useState(() => {
@@ -121,7 +120,7 @@ export default function App() {
         <BalanceCards balances={activeGroup.balances} />
       )}
       {activeGroup.expenses.length > 0 && (
-        <ExpenseList expenses={activeGroup.expenses} />
+        <ExpenseList1 expenses={activeGroup.expenses} />
       )}
       {settlements.length > 0 && (
         <SettlementList settlements={settlements} />
