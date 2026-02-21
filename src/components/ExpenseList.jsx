@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function ExpenseList({ expenses }) {
+const ExpenseList = ({ expenses }) => {
   return (
     <div className="mb-6">
       <h2 className="text-xl font-semibold mb-3">Expense History</h2>
@@ -18,3 +18,5 @@ export default function ExpenseList({ expenses }) {
     </div>
   );
 }
+
+export default ExpenseList

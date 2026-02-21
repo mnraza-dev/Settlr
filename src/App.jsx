@@ -9,8 +9,6 @@ import ExpenseList from "./components/ExpenseList.JSX";
 
 export default function App() {
   const [dark, setDark] = useState(true);
-
-  // ---------------- GROUP STATE ----------------
   const [groups, setGroups] = useState(() => {
     const saved = localStorage.getItem("groups");
     return saved
