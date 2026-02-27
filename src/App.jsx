@@ -51,7 +51,7 @@ export default function App() {
     ));
   }
 
-  function addExpense({ paidBy, amount, participants }) {
+  function addExpense({ paidBy, amount, participants, date, details }) {
     if (!participants.length) return;
 
     const share = amount / participants.length;
@@ -73,14 +73,14 @@ export default function App() {
           paidBy,
           amount,
           participants,
+          date,
+          details, // <-- Add this
         },
       ],
       balances: updatedBalances,
     };
 
-    setGroups(groups.map((g) =>
-      g.id === activeGroupId ? updatedGroup : g
-    ));
+    setGroups(groups.map((g) => (g.id === activeGroupId ? updatedGroup : g)));
   }
 
   const settlements = calculateSettlement(
