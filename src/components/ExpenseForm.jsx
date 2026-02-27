@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-export default function ExpenseForm({ members, onAddExpense }) {
 
+export default function ExpenseForm({ members, onAddExpense }) {
   const [paidBy, setPaidBy] = useState("");
   const [amount, setAmount] = useState("");
   const [participants, setParticipants] = useState([]);
-
-  // 🔥 Sync paidBy whenever members change
   useEffect(() => {
     if (members.length > 0) {
       setPaidBy(members[0]);
@@ -36,11 +34,17 @@ export default function ExpenseForm({ members, onAddExpense }) {
   }
 
   return (
-    <div className="rounded-2xl p-6 mb-8 shadow-lg bg-white/80 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
-      <h2 className="text-xl font-semibold mb-4">Add Expense</h2>
+    <div className="rounded-2xl p-8 shadow-[0_10px_40px_rgba(0,0,0,0.6)] 
+      bg-zinc-950 border border-zinc-800 space-y-6 transition-all">
+      <h2 className="text-2xl font-semibold text-white tracking-tight">
+        Add Expense
+      </h2>
 
       <select
-        className="border p-2 rounded w-full mb-3"
+        className="w-full h-12 px-4 rounded-xl bg-zinc-900 border border-zinc-800
+          text-white placeholder:text-zinc-500
+          focus:outline-none focus:ring-2 focus:ring-white/20
+          transition"
         value={paidBy}
         onChange={(e) => setPaidBy(e.target.value)}
       >
@@ -51,28 +55,44 @@ export default function ExpenseForm({ members, onAddExpense }) {
         ))}
       </select>
 
+      {/* Amount */}
       <input
         type="number"
-        className="border p-2 rounded w-full mb-3"
         placeholder="Amount"
+        className="w-full h-12 px-4 rounded-xl bg-zinc-900 border border-zinc-800
+          text-white placeholder:text-zinc-500
+          focus:outline-none focus:ring-2 focus:ring-white/20
+          transition"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
 
-      {members.map((m) => (
-        <label key={m} className="block">
-          <input
-            type="checkbox"
-            checked={participants.includes(m)}
-            onChange={() => toggleParticipant(m)}
-          />
-          <span className="ml-2">{m}</span>
-        </label>
-      ))}
+      {/* Participants */}
+      <div className="flex flex-wrap gap-3">
+        {members.map((m) => (
+          <label
+            key={m}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl cursor-pointer
+              border border-zinc-800 transition
+              ${participants.includes(m) ? "bg-yellow-600 text-white" : "bg-red-900 text-zinc-300"}
+              hover:bg-yellow-800 hover:text-white`}
+          >
+            <input
+              type="checkbox"
+              checked={participants.includes(m)}
+              onChange={() => toggleParticipant(m)}
+              className="hidden"
+            />
+            {m}
+          </label>
+        ))}
+      </div>
 
       <button
         onClick={handleSubmit}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="w-full px-4 py-2 rounded-xl font-medium shadow-md transition-all duration-300 
+        bg-slate-800 text-white
+        dark:bg-white dark:text-slate-900 cursor-pointer"
       >
         Add Expense
       </button>
