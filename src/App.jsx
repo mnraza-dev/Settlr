@@ -95,13 +95,13 @@ export default function App() {
           : "min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200 text-slate-900 transition-all duration-500"
       }
     >
-      <div className="max-w-5xl mx-auto p-6">
+      <div className="max-w-5xl mx-auto p-2">
         <Header dark={dark} setDark={setDark} />
 
         {/* Glass Card Container */}
         <div
           className="backdrop-blur-lg bg-white/10 dark:bg-white/5 
-          border border-white/10 rounded-2xl p-6 shadow-xl space-y-6"
+          border border-white/10 rounded-2xl p-3 shadow-xl space-y-6"
         >
           <GroupSelector
             groups={groups}
